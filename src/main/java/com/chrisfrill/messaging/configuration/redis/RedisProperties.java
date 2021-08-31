@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Data
 public class RedisProperties {
-    @Value("${spring.redis.port}")
+    @Value("${spring.redis.port:6379}")
     private int redisPort;
-    @Value("${spring.redis.host}")
+    @Value("${spring.redis.host:redis}")
     private String redisHost;
 }
