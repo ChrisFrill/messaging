@@ -9,6 +9,6 @@ public class OffsetDateTimeToStringConverterTest extends TestData {
     @Test
     public void convert_ReturnsCorrectDateInStringFormat_OnDateProvided() {
         OffsetDateTimeToStringConverter offsetDateTimeToStringConverter = new OffsetDateTimeToStringConverter();
-        assertEquals(offsetDateTimeToStringConverter.convert(dateTime), date);
+        assertEquals(offsetDateTimeToStringConverter.convert(dateTime), firstDate);
     }
 }
