@@ -75,4 +75,17 @@ public class EndpointConfigurationTest extends TestData {
                 .expectStatus()
                 .isOk();
     }
+
+    @Test
+    public void postMessage_ReturnBadRequest_IfMessageIsInvalid() {
+        Flux<MessageEntity> messageEntityFlux = Flux.fromIterable(List.of());
+        given(messageService.save(any(MessageEntity.class))).willReturn(Mono.just(messageEntity));
+
+        webTestClient.post()
+                .uri("/messages")
+                .body(Mono.just(invalidMessageRequest), MessageRequest.class)
+                .exchange()
+                .expectStatus()
+                .isBadRequest();
+    }
 }
