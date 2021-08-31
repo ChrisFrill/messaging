@@ -7,6 +7,7 @@ The application can be started by issuing:
 ```bash
 docker-compose up
 ```
+The command will start up a Redis instance (port 6379), the server for the API and WebSocket (port 8080), and a client application (port 8081) which can send and subscribe to messages.
 ### POST /messages
 Send new message to Redis in format rejecting invalid messages:
 ```json
@@ -29,10 +30,15 @@ Returns all messages persisted in Redis with the longest palindrome size calcula
 ```
 
 ### Subscribe to WebSocket
-Clients can subscribe to `ws://{HOST}:{PORT}/message` endpoint to recieve messages.
+Clients can subscribe to `ws://localhost:{PORT}/message` endpoint to recieve messages.
+
+### Built-in client
+The composition contains a default client that can be reached at `localhost:{PORT}/`
 
 ## Configuration Options
 
-The following configuration options should be set by providing environment variables to the application:
+The following configuration options should be set by providing environment variables to the server application:
 * `REDIS_HOST` - HTTP host of Redis. Defaults to redis.
 * `REDIS_PORT` - HTTP port of Redis. Defaults to 6379.
+
+If the services should be exposed on different ports the `docker-compose.yaml` file should be modified accordingly. 
