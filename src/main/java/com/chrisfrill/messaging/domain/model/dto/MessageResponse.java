@@ -26,4 +26,50 @@ public class MessageResponse {
         this.content = content;
         this.timestamp = timestamp;
     }
+
+    public Integer getLongestPalindromeSize() {
+        if (content == null) {
+            throw new RuntimeException("Message content should be provided");
+        }
+        String alphabeticContent = content.replaceAll("[^a-zA-Z]", "");
+        if (alphabeticContent.length() <= 1)
+            return alphabeticContent.length();
+
+        String LPS = "";
+
+        for (int i = 1; i < alphabeticContent.length(); i++) {
+            int low = i;
+            int high = i;
+            while (alphabeticContent.charAt(low) == alphabeticContent.charAt(high)) {
+                low--;
+                high++;
+                if (low == -1 || high == alphabeticContent.length())
+                    break;
+            }
+
+            String palindrome = alphabeticContent.substring(low + 1, high);
+            if (palindrome.length() > LPS.length()) {
+                LPS = palindrome;
+            }
+
+            low = i - 1;
+            high = i;
+            while (alphabeticContent.charAt(low) == alphabeticContent.charAt(high)) {
+                low--;
+                high++;
+                if (low == -1 || high == alphabeticContent.length())
+                    break;
+            }
+
+            palindrome = alphabeticContent.substring(low + 1, high);
+            if (palindrome.length() > LPS.length()) {
+                LPS = palindrome;
+            }
+        }
+        return LPS.length();
+    }
+
+    private void setLongestPalindromeSize(Integer longestPalindromeSize) {
+        this.longestPalindromeSize = longestPalindromeSize;
+    }
 }
