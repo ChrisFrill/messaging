@@ -30,6 +30,7 @@ dependencies {
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4'
 	implementation 'org.modelmapper:modelmapper:2.3.5'
 
+	testImplementation 'it.ozimov:embedded-redis:0.7.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
 
