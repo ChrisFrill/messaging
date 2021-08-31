@@ -1,15 +1,27 @@
 package com.chrisfrill.messaging;
 
 import com.chrisfrill.messaging.domain.model.MessageEntity;
+import com.chrisfrill.messaging.domain.model.dto.MessageRequest;
+import com.chrisfrill.messaging.domain.model.dto.MessageResponse;
 import com.chrisfrill.messaging.util.DateFormatter;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 
 public class TestData {
-    public String date = "2018-10-09 00:12:12+0000";
+    public String firstDate = "2018-10-09 00:12:12+0000";
+    String secondDate = "2018-10-09 00:13:12+0100";
 
-    public OffsetDateTime dateTime = OffsetDateTime.parse(date, DateFormatter.formatter);
+
+    public OffsetDateTime dateTime = OffsetDateTime.parse(firstDate, DateFormatter.formatter);
+    public OffsetDateTime dateTime2 = OffsetDateTime.parse(secondDate, DateFormatter.formatter.withZone(ZoneId.of("+01:00")));
 
     String palindrome = "aba";
+    String notPalindrome = "1";
     public final MessageEntity messageEntity = new MessageEntity("1", palindrome, dateTime);
+    public final MessageResponse messageResponse = new MessageResponse(palindrome, dateTime);
+    public final MessageRequest messageRequest = new MessageRequest(palindrome, dateTime);
+    public final MessageRequest invalidMessageRequest = new MessageRequest(null, dateTime);
+
+    public final MessageEntity secondMessageEntity = new MessageEntity("2", notPalindrome, dateTime2);
 }

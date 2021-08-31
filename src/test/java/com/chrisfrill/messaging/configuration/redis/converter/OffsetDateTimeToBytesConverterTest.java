@@ -9,6 +9,6 @@ public class OffsetDateTimeToBytesConverterTest extends TestData {
     @Test
     public void convert_ReturnsCorrectDateInBytes_OnDateProvided() {
         OffsetDateTimeToBytesConverter offsetDateTimeToBytesConverter = new OffsetDateTimeToBytesConverter();
-        assertArrayEquals(offsetDateTimeToBytesConverter.convert(dateTime), date.getBytes());
+        assertArrayEquals(offsetDateTimeToBytesConverter.convert(dateTime), firstDate.getBytes());
     }
 }
