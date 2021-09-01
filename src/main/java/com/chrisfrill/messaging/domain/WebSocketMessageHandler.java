@@ -16,11 +16,16 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class MessageWebSocketHandler implements WebSocketHandler {
+public class WebSocketMessageHandler implements WebSocketHandler {
     private final ObjectMapper objectMapper;
     private final Sinks.Many<MessageEntity> messagePublisher = Sinks.many().replay().all();
     private final Flux<MessageEntity> messages = messagePublisher.asFlux().replay(0).autoConnect();
 
+    /**
+     * Handle WebSocket messages.
+     *
+     * @return a new Mono representing the termination of the handling of current WebSocket message
+     */
     @Override
     public Mono<Void> handle(WebSocketSession session) {
         Flux<String> outputMessages = Flux.from(messages).map(this::toJSON);

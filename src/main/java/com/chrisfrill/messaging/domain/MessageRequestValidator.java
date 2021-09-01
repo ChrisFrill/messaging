@@ -13,6 +13,9 @@ public class MessageRequestValidator implements Validator {
         return MessageRequest.class.isAssignableFrom(clazz);
     }
 
+    /**
+     * Validates if content and timestamp fields are provided in the request.
+     */
     @Override
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(

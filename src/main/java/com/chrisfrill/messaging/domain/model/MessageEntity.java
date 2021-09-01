@@ -10,6 +10,9 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.time.OffsetDateTime;
 
+/**
+ * Represents a message persisted in the underlying persistent storage
+ */
 @AllArgsConstructor
 @Data
 @NoArgsConstructor

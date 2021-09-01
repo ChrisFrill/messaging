@@ -12,6 +12,11 @@ import java.time.OffsetDateTime;
 @Component
 @ReadingConverter
 public class BytesToOffsetDateTimeConverter implements Converter<byte[], OffsetDateTime> {
+    /**
+     * Converts a bytes array to OffsetDateTime with yyyy-MM-dd HH:mm:ssxx format
+     *
+     * @return A OffsetDateTime representation of the provided date in yyyy-MM-dd HH:mm:ssxx format
+     */
     @Override
     public OffsetDateTime convert(final byte[] source) {
         log.debug("Converting bytes to date: {}", source );

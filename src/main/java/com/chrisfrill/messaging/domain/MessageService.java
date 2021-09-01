@@ -14,13 +14,23 @@ import reactor.core.publisher.Mono;
 public class MessageService {
     private final MessageRepository messageRepository;
 
+    /**
+     * Save a new message to the underlying persistent storage.
+     *
+     * @return a Mono that emits the saved message
+     */
     public Mono<MessageEntity> save(MessageEntity messageEntity) {
-        log.info("Saving new message to Redis");
+        log.info("Saving new message to database");
         return Mono.just(messageRepository.save(messageEntity));
     }
 
+    /**
+     * Return all messages from the underlying persistent storage.
+     *
+     * @return a Flux that emits the persisted messages from the underlying persistent storage
+     */
     public Flux<MessageEntity> findAll() {
-        log.info("Getting messages from Redis");
+        log.info("Getting messages from database");
         return Flux.fromIterable(messageRepository.findAll());
     }
 }

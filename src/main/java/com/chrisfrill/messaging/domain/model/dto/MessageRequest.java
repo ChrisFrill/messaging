@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
 
+/**
+ * Represents a message coming from a HTTP request
+ */
 @AllArgsConstructor
 @Data
 @NoArgsConstructor

@@ -26,18 +26,28 @@ import java.net.URI;
 @Log4j2
 @Component
 @RequiredArgsConstructor
-public class MessageHandler {
+public class HttpMessageHandler {
     private final MessageRequestValidator validator;
     private final MessageService messageService;
     private final ModelMapper modelMapper = new ModelMapper();
     private final ObjectMapper objectMapper;
 
+    /**
+     * Returns all messages from the underlying persistent storage inside the HTTP response's body
+     *
+     * @return a Mono that emits a ServerResponse that represents the HTTP response
+     */
     public Mono<ServerResponse> findAll(ServerRequest serverRequest) {
         return defaultReadResponse(messageService.findAll()
                 .map(message -> modelMapper.map(message, MessageResponse.class))
         );
     }
 
+    /**
+     * Save a new message to the underlying persistent storage from an HTTP request
+     *
+     * @return a Mono that emits a ServerResponse that represents the HTTP response
+     */
     public Mono<ServerResponse> save(ServerRequest request) {
         return defaultWriteResponse(request.bodyToMono(MessageRequest.class)
                 .flatMap(message -> {

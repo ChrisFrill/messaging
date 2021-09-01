@@ -10,6 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.OffsetDateTime;
 
+/**
+ * Represents a message in a HTTP response
+ */
 @Log4j2
 @Data
 @NoArgsConstructor
@@ -29,6 +32,12 @@ public class MessageResponse {
         this.timestamp = timestamp;
     }
 
+    /**
+     * Returns the longest palindrome size calculated from the message content.
+     * Only considering alphabetic characters.
+     *
+     * @return Length of the longest palindrome contained in content
+     */
     public Integer getLongestPalindromeSize() {
         if (content == null) {
             throw new RuntimeException("Message content should be provided");
