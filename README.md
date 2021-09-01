@@ -1,5 +1,5 @@
 # Messaging Application
-A simple messaging application written in Java with Springt WebFlux that lets you send and read messages from Redis. The sent messages are also broadcasted via WebSockets. 
+A simple messaging application written in Java with Spring WebFlux that lets you send and read messages from Redis. The sent messages are also broadcasted via WebSockets. 
 
 ## Usage
 The messaging application can be reached at port 8080.
