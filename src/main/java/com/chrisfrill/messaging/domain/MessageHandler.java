@@ -54,11 +54,9 @@ public class MessageHandler {
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(message, MessageResponse.class)
-                .onErrorResume(e -> Mono.just("Error " + e.getMessage())
-                        .flatMap(s -> ServerResponse.ok()
-                                .contentType(MediaType.TEXT_PLAIN)
-                                .bodyValue(s))
-                );
+                .onErrorResume(e -> Mono.error(new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "Couldn't get messages from Redis", e)));
     }
 
     private Mono<ServerResponse> defaultWriteResponse(Publisher<MessageEntity> message) {
@@ -68,12 +66,10 @@ public class MessageHandler {
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Access-Control-Allow-Headers", "*")
-                        .bodyValue(savedMessage)
-                        .onErrorResume(e -> Mono.just("Error " + e.getMessage())
-                                .flatMap(s -> ServerResponse.ok()
-                                        .contentType(MediaType.TEXT_PLAIN)
-                                        .bodyValue(s)))
-                );
+                        .bodyValue(savedMessage))
+                        .onErrorResume(e -> Mono.error(new ResponseStatusException(
+                                HttpStatus.BAD_REQUEST,
+                                "Couldn't send request to server", e)));
     }
 
     private void validateRequest(MessageRequest message) {

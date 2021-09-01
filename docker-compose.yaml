@@ -6,7 +6,7 @@ services:
       - "6379:6379"
 
   server:
-    image: chrisfrill/messaging:0.1
+    image: chrisfrill/messaging:1.0
     ports:
       - "8080:8080"
     environment:
