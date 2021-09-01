@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @EnableScheduling
 @SpringBootTest(classes = TestRedisConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class MessageWebSocketHandlerTest extends TestData {
+public class WebSocketMessageHandlerTest extends TestData {
     Boolean isScheduled = false;
 
     @Autowired

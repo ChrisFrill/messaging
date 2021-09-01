@@ -1,6 +1,6 @@
 package com.chrisfrill.messaging.configuration.http;
 
-import com.chrisfrill.messaging.domain.MessageHandler;
+import com.chrisfrill.messaging.domain.HttpMessageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +14,13 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 @RequiredArgsConstructor
 public class EndpointConfiguration {
-    private final MessageHandler messageHandler;
+    private final HttpMessageHandler httpMessageHandler;
 
     @Bean
     RouterFunction<ServerResponse> routes() {
         return route()
-                .GET("/messages", accept(APPLICATION_JSON), messageHandler::findAll)
-                .POST("/messages", accept(APPLICATION_JSON), messageHandler::save)
+                .GET("/messages", accept(APPLICATION_JSON), httpMessageHandler::findAll)
+                .POST("/messages", accept(APPLICATION_JSON), httpMessageHandler::save)
                 .build();
     }
 }
