@@ -43,3 +43,4 @@ If the services should be exposed on different ports the `docker-compose.yaml` f
 
 ### Client application
 The composition contains a default client that can be reached at port 8081 by default.
+For date formatting [luxon](https://github.com/moment/luxon) is used.
