@@ -3,16 +3,18 @@ package com.chrisfrill.messaging.domain;
 import com.chrisfrill.messaging.domain.model.MessageEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ReactiveHashOperations;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @Log4j2
 @Service
 @RequiredArgsConstructor
 public class MessageService {
-    private final MessageRepository messageRepository;
+    private final ReactiveHashOperations<String, String, MessageEntity> hashOperations;
 
     /**
      * Save a new message to the underlying persistent storage.
@@ -20,8 +22,12 @@ public class MessageService {
      * @return a Mono that emits the saved message
      */
     public Mono<MessageEntity> save(MessageEntity messageEntity) {
+        if (messageEntity == null) {
+            throw new IllegalArgumentException("No message was provided for saving");
+        }
         log.info("Saving new message to database");
-        return Mono.just(messageRepository.save(messageEntity));
+        log.info("Message: " + messageEntity);
+        return hashOperations.put("MESSAGES", UUID.randomUUID().toString(), messageEntity).thenReturn(messageEntity);
     }
 
     /**
@@ -31,6 +37,6 @@ public class MessageService {
      */
     public Flux<MessageEntity> findAll() {
         log.info("Getting messages from database");
-        return Flux.fromIterable(messageRepository.findAll());
+        return hashOperations.values("MESSAGES");
     }
 }

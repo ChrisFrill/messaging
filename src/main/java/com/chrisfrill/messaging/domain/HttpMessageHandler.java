@@ -95,7 +95,7 @@ public class HttpMessageHandler {
         try {
             return objectMapper.writeValueAsString(message);
         } catch (JsonProcessingException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Json was provided");
         }
     }
 

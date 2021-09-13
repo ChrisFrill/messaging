@@ -18,10 +18,10 @@ public class TestData {
 
     String palindrome = "aba";
     String notPalindrome = "1";
-    public final MessageEntity messageEntity = new MessageEntity("1", palindrome, dateTime);
+    public final MessageEntity messageEntity = new MessageEntity(palindrome, dateTime);
     public final MessageResponse messageResponse = new MessageResponse(palindrome, dateTime);
     public final MessageRequest messageRequest = new MessageRequest(palindrome, dateTime);
     public final MessageRequest invalidMessageRequest = new MessageRequest(null, dateTime);
 
-    public final MessageEntity secondMessageEntity = new MessageEntity("2", notPalindrome, dateTime2);
+    public final MessageEntity secondMessageEntity = new MessageEntity(notPalindrome, dateTime2);
 }
