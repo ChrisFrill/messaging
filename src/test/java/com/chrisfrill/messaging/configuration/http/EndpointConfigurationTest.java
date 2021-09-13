@@ -78,7 +78,6 @@ public class EndpointConfigurationTest extends TestData {
 
     @Test
     public void postMessage_ReturnBadRequest_IfMessageIsInvalid() {
-        Flux<MessageEntity> messageEntityFlux = Flux.fromIterable(List.of());
         given(messageService.save(any(MessageEntity.class))).willReturn(Mono.just(messageEntity));
 
         webTestClient.post()
