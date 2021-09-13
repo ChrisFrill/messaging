@@ -42,7 +42,7 @@ public class MessageResponse {
         if (content == null) {
             throw new RuntimeException("Message content should be provided");
         }
-        log.info("Calculating longest palindrome size for content: {}", content );
+        log.info("Calculating longest palindrome size for content: {}", content);
         String alphabeticContent = content.replaceAll("[^a-zA-Z]", "");
         if (alphabeticContent.length() <= 1)
             return alphabeticContent.length();
